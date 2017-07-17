@@ -1,0 +1,16 @@
+.window_boundingBox{position:fixed;border:1px solid #000;width:500px;height:300px;left:50%;top:50%;/*margin:-150px 0 0 -250px;*/box-shadow:0 0 12px rgba(0,0,0,5);background:#fff;}
+.window_boundingBox .window_header{background:#333;color:#fff;text-align:center;padding:5px;font-size:20px;}
+.window_boundingBox .window_body{padding:10px;}
+.window_boundingBox .window_footer{text-align:center;position:absolute;bottom:10px;left:0;right:0;}
+.window_boundingBox .window_footer .window_alertBtn{width:100px;}
+.window_boundingBox .window_confirmBtn,.window_boundingBox .window_cancelBtn{margin:0 15px;}
+.window_boundingBox .window_closeBtn{position:absolute;right:0;top:0;padding:7px 10px;font-size:14px;color:#fff;cursor:pointer;}
+
+/*mask*/
+.window_mask{width:100%;height:100%;background:#000;opacity:.2;position:absolute;left:0;top:0;}
+
+/*skik for a*/
+.window_skin_a{box-shadow:none;border:1px solid orange;}
+.window_skin_a .window_alertBtn{background:orange;color:#fff;float:right;margin-right:20px;}
+.window_skin_a .window_header{background:orange;}
+.window_skin_a .window_closeBtn{width:16px;height:16px;line-height:16px;border:2px solid #fff;border-radius:9px;padding:0;font-size:12px;margin:5px;text-align:center;}
