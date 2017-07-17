@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<button id="test1">测试1</button>
+	<button id="test2">测试2</button>
+	<script>
+	    /**
+	     * 方式一:
+	     * 分析:
+	     *    在这个惰性载入的addEvent()中，if语句的每个分支都会为addEvent变量赋值，有效覆盖了原函数。
+	     *    最后一步便是调用了新赋函数。下一次调用addEvent()的时候，
+	     *    便会直接调用新赋值的函数，这样就不用再执行if语句了
+	     */
+		// function addEvent(type, element, func){
+		// 	if(element.addEventListener){
+		// 		//惰性载入重写addEvent()
+		// 		addEvent = function(type, element, func){
+		// 			element.addEventListener(type, func, false);
+		// 		};
+		// 	}else if(element.attachEvent){
+		// 		addEvent = function(type, element, func){
+		// 			element.attachEvent('on'+type, func);
+		// 		};
+				
+		// 	}else{
+		// 		addEvent = function(type, element, func){
+		// 			element['on'+type] = func;
+		// 		};
+		// 	}
+		// 	return addEvent(type, element, func);
+		// }
+
+		/**
+	     * 方式二:匿名函数调用方式
+	     * 分析:
+	     *     创建一个匿名的自执行函数，通过不同的分支以确定应该使用那个函数实现，
+	     *     每个分支都返回一个正确的函数，并立即将其赋值给变量addEvent
+	     *     之后每次调用都是这个被赋的值
+	     */
+		var addEvent = (function(){
+			if(document.addEventListener){
+				return function(type, element, func){
+					element.addEventListener(type, func, false);
+				};
+			}else if(document.attachEvent){
+				return function(type, element, func){
+					element.attachEvent('on'+type, func);
+				};		
+			}else{
+				return function(type, element, func){
+					element['on'+type] = func;
+				};
+			}	
+		})();
+
+		function $(id){
+			return document.getElementById(id);
+		}
+
+		addEvent('click', $('test1'), function(){alert('1点我，点我！')});
+		addEvent('click', $('test2'), function(){alert('2点我，点我！')});
+	</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.form_input{margin:15px;border:none;outline:0;border:1px solid #eee;}
+		.form_input:focus{border:1px solid red;}
+		.form_input.focus{border:1px solid red;}
+	</style>
+</head>
+<body>
+	姓名：<input type="text" class="form_input"><br>
+	电话：<input type="text" class="form_input"><br>
+	性别：<input type="radio" name="sex" value="male" checked>男
+          <input type="radio" name="sex" value="female">女
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+		/*
+		 * 良好的性能体验，就是当用户鼠标停留在输入框一段时间后，输入框自动获取焦点
+		 * 实现原理 超时计时器、foucs、blur、hover
+		*/
+    	var timer,cen = 1200;
+    	$('.form_input').hover(
+    		function(){
+    			var me = $(this);
+    			timer = setTimeout(function(){
+    				me.focus();
+    			}, cen);
+    		},
+    		function(){
+    			clearTimeout(timer);
+    			timer = 0;
+    			$(this).blur();
+    		}
+    	);
+    </script>
+</body>
+</html>
